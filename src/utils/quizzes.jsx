@@ -463,3 +463,8 @@ export const BACKGROUND_COLORS = {
   javascript: '#EBF0FF',
   accessibility: '#F6E7FF'
 }
+
+export const ICON_COLORS = {
+  ligth: '#F2F2F2',
+  dark: '#4B5563'
+}

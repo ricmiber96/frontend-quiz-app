@@ -1,13 +1,16 @@
 import React from 'react'
 import { QUIZZES } from '../../utils/quizzes'
 import HomeItem from './HomeItem'
+import useQuiz from '../../hooks/useQuiz'
 
 export default function HomeGrid (props) {
+  const { theme } = useQuiz()
+
   return (
     <section className='grid grid-cols-2 gap-24 mt-10'>
-      <div className='flex flex-col text-gray-500 space-y-6'>
-        <h1 className='text-8xl '>Welcome to <br/>
-          <span className='text-black font-bold'>Frontend Quiz!</span>
+      <div className={` ${theme ? 'text-white' : 'text-black'} flex flex-col space-y-6`}>
+        <h1 className='text-8xl text-light'>Welcome to <br/>
+          <span className='font-bold'>Frontend Quiz!</span>
         </h1>
         <p className='italic text-2xl'>Pick a subject to get started</p>
       </div>
@@ -17,7 +20,7 @@ export default function HomeGrid (props) {
             QUIZZES.map((quiz, i) => {
               console.log(quiz.icon)
               return (
-                <HomeItem key={i} icon={quiz.icon} text={quiz.title}/>
+                <HomeItem theme={theme} key={i} icon={quiz.icon} text={quiz.title}/>
               )
             })
           }
