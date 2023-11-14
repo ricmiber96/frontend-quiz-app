@@ -18,7 +18,6 @@ export default function HomeGrid (props) {
         <ul>
           {
             QUIZZES.map((quiz, i) => {
-              console.log(quiz.icon)
               return (
                 <HomeItem theme={theme} key={i} icon={quiz.icon} text={quiz.title}/>
               )

@@ -10,13 +10,25 @@ function useQuizReducer () {
     dispatch({ type: 'SET_THEME', payload: theme })
   }
 
-  return { state, changeTheme }
+  const setCorrectAnswer = (answer) => {
+    dispatch({ type: 'SET_CORRECT_ANSWER', payload: answer })
+  }
+
+  const selectAnswer = (answer) => {
+    dispatch({ type: 'SELECT_ANSWER', payload: answer })
+  }
+
+  const setIndex = (index) => {
+    dispatch({ type: 'SET_INDEX', payload: index })
+  }
+
+  return { state, changeTheme, selectAnswer, setCorrectAnswer, setIndex }
 }
 const QuizContextProvider = ({ children }) => {
-  const { state, changeTheme } = useQuizReducer()
+  const { state, changeTheme, selectAnswer, setCorrectAnswer, setIndex } = useQuizReducer()
 
   return (
-    <QuizContext.Provider value={{ theme: state.theme, changeTheme }}>
+    <QuizContext.Provider value={{ state, changeTheme, selectAnswer, setCorrectAnswer, setIndex }}>
       {children}
     </QuizContext.Provider>
   )

@@ -1,9 +1,8 @@
 import React from 'react'
+import QuizGrid from '../components/QuizComponents/QuizGrid'
 
 export default function Quiz (props) {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <QuizGrid/>
   )
 }

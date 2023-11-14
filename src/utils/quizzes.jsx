@@ -4,6 +4,7 @@ export const QUIZZES = [
   {
     title: 'HTML',
     icon: <HTMLIcon color='#FF8C4B' />,
+    categoryColor: '#FF8C4B',
     questions: [
       {
         question: 'What does HTML stand for?',
@@ -190,6 +191,7 @@ export const QUIZZES = [
   {
     title: 'CSS',
     icon: <CSSIcon color='#2FD887' />,
+    categoryColor: '#2FD887',
     questions: [
       {
         question: 'What does CSS stand for?',
@@ -266,6 +268,7 @@ export const QUIZZES = [
   {
     title: 'JavaScript',
     icon: <JSIcon color='#306AFF' />,
+    categoryColor: '#306AFF',
     questions: [
       {
         question: "Which syntax is correct to output 'Hello World' in an alert box?",
@@ -362,6 +365,7 @@ export const QUIZZES = [
   {
     title: 'Accessibility',
     icon: <AccesibilityIcon color={'#A729F5'}/>,
+    categoryColor: '#A729F5',
     questions: [
       {
         question: "What does 'WCAG' stand for?",
