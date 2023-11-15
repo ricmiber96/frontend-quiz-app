@@ -1,6 +1,6 @@
 export const quizInitialState = {
   theme: false,
-  index: 17,
+  index: 0,
   correctAnswer: '',
   choosenAnswer: '',
   score: 0,
@@ -18,7 +18,7 @@ export default function quizReducer (state, action) {
     SELECT_ANSWER: 'SELECT_ANSWER',
     SET_CURRENT_QUESTION: 'SET_CURRENT_QUESTION',
     SET_SCORE: 'SET_SCORE',
-    SET_IS_FINISHED: 'SET_IS_FINISHED'
+    RESET_QUIZ: 'RESET_QUIZ'
   }
 
   switch (type) {
@@ -48,6 +48,15 @@ export default function quizReducer (state, action) {
   case QUIZ_ACTION_TYPES.SET_SCORE:{
     const newState = structuredClone(state)
     newState.score += 1
+    return newState
+  }
+  case QUIZ_ACTION_TYPES.RESET_QUIZ:{
+    const newState = structuredClone(state)
+    newState.index = quizInitialState.index
+    newState.score = quizInitialState.score
+    newState.choosenAnswer = quizInitialState.choosenAnswer
+    newState.correctAnswer = quizInitialState.correctAnswer
+    newState.isFinished = quizInitialState.isFinished
     return newState
   }
   }

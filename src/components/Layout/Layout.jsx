@@ -6,14 +6,13 @@ import { WaveIcon } from '../Icons'
 
 export default function Layout (props) {
   const { theme } = useQuiz()
-  console.log(theme)
 
   return (
     <>
       <div className= {`${theme ? 'bg-gray-700' : 'bg-gray-200'}  min-h-screen `}>
         <div className='w-full z-20 fixed overflow-hidden px-56 py-32 transition-all duration-300'>
           <Header/>
-          <main className=''>
+          <main className='mt-10'>
             <Outlet/>
           </main>
         </div>

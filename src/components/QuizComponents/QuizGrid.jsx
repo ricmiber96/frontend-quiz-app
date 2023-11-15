@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Navigate, useNavigate } from 'react-router-dom'
 import { QUIZZES } from '../../utils/quizzes'
 import QuizItem from './QuizItem'
 import useQuiz from '../../hooks/useQuiz'
 import { ErrorIcon } from '../Icons'
+import CircularProgress from './CircularProgress'
 
 export default function QuizGrid (props) {
   // Get quiz category from url
   const location = useLocation()
   const quizCategory = location.pathname.split('/')[1]
-  const { index, choosenAnswer, setCorrectAnswer, correctAnswer, setIndex } = useQuiz()
+  const { index, choosenAnswer, selectAnswer, setCorrectAnswer, correctAnswer, setIndex, setScore, score } = useQuiz()
+  const navigate = useNavigate()
+
   const [userAnswer, setUserAnswer] = useState('')
   const [isAnswered, setIsAnswered] = useState(false)
 
@@ -18,11 +21,8 @@ export default function QuizGrid (props) {
   let questionAnswers = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].options
 
   useEffect(() => {
-    const correctAnswer = questionsArray[0].answer
+    const correctAnswer = questionsArray[index].answer
     setCorrectAnswer(correctAnswer)
-    console.log(correctAnswer)
-    console.log(questionsArray)
-    console.log(index)
     questionsArray = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions
     questionTitle = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].question
     questionAnswers = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].option
@@ -34,9 +34,19 @@ export default function QuizGrid (props) {
   }
 
   const nextQuestion = () => {
+    if (choosenAnswer === correctAnswer) {
+      setScore()
+    }
+    console.log(score)
     setUserAnswer('')
+    selectAnswer('')
     setIsAnswered(false)
     setIndex()
+  }
+
+  const finishQuiz = () => {
+    setScore()
+    navigate('/results')
   }
 
   return (
@@ -44,6 +54,7 @@ export default function QuizGrid (props) {
       <div className='flex flex-col gap-11 desktop:pb-12 mobile:gap-5 mobile:pb-4'>
         <p className='text-lg italic transition-all duration-300'>Question {index + 1} of {questionsArray.length}</p>
         <h2 className='text-3xl font-medium transition-all duration-300'>{questionTitle}</h2>
+        <CircularProgress percent={5.5}/>
       </div>
       <div className='flex flex-col space-y-8'>
         {
@@ -69,7 +80,7 @@ export default function QuizGrid (props) {
                 </button>
               )
               : (userAnswer !== '' && index === questionsArray.length - 1 && (
-                <button onClick={() => nextQuestion()} className='p-6 rounded-3xl w-full  text-2xl font-medium bg-purple-600 text-white hover:opacity-80'>
+                <button onClick={() => finishQuiz()} className='p-6 rounded-3xl w-full  text-2xl font-medium bg-purple-600 text-white hover:opacity-80'>
                  Submit Quiz
                 </button>
               )
