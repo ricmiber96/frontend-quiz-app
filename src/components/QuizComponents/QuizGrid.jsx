@@ -10,7 +10,7 @@ export default function QuizGrid (props) {
   // Get quiz category from url
   const location = useLocation()
   const quizCategory = location.pathname.split('/')[1]
-  const { theme, index, choosenAnswer, selectAnswer, setCorrectAnswer, correctAnswer, setIndex, setScore, score } = useQuiz()
+  const { theme, index, choosenAnswer, selectAnswer, setCorrectAnswer, setQuizCategory, correctAnswer, setIndex, setScore, score } = useQuiz()
   const [percentage, setPercentage] = useState(0)
   const navigate = useNavigate()
 
@@ -24,6 +24,7 @@ export default function QuizGrid (props) {
   useEffect(() => {
     const correctAnswer = questionsArray[index].answer
     setCorrectAnswer(correctAnswer)
+    setQuizCategory(quizCategory)
     questionsArray = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions
     questionTitle = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].question
     questionAnswers = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].option

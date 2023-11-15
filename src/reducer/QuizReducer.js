@@ -1,5 +1,6 @@
 export const quizInitialState = {
   theme: false,
+  quizCategory: '',
   index: 0,
   correctAnswer: '',
   choosenAnswer: '',
@@ -12,6 +13,7 @@ export default function quizReducer (state, action) {
 
   const QUIZ_ACTION_TYPES = {
     SET_THEME: 'SET_THEME',
+    SET_QUIZ_CATEGORY: 'SET_QUIZ_CATEGORY',
     SET_INDEX: 'SET_INDEX',
     SET_QUESTIONS: 'SET_QUESTIONS',
     SET_CORRECT_ANSWER: 'SET_CORRECT_ANSWER',
@@ -26,6 +28,12 @@ export default function quizReducer (state, action) {
     return {
       ...state,
       theme: payload
+    }
+  }
+  case QUIZ_ACTION_TYPES.SET_QUIZ_CATEGORY:{
+    return {
+      ...state,
+      quizCategory: payload
     }
   }
   case QUIZ_ACTION_TYPES.SET_CORRECT_ANSWER:{
@@ -53,6 +61,7 @@ export default function quizReducer (state, action) {
   case QUIZ_ACTION_TYPES.RESET_QUIZ:{
     const newState = structuredClone(state)
     newState.index = quizInitialState.index
+    newState.quizCategory = quizInitialState.quizCategory
     newState.score = quizInitialState.score
     newState.choosenAnswer = quizInitialState.choosenAnswer
     newState.correctAnswer = quizInitialState.correctAnswer

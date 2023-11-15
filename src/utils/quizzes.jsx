@@ -472,3 +472,10 @@ export const ICON_COLORS = {
   ligth: '#F2F2F2',
   dark: '#4B5563'
 }
+
+export const QUIZES_ICONS = {
+  html: <HTMLIcon color='#FF8C4B' />,
+  css: <CSSIcon color='#2FD887' />,
+  javascript: <JSIcon color='#306AFF' />,
+  accessibility: <AccesibilityIcon color='#A729F5'/>
+}
