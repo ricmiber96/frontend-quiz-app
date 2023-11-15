@@ -11,6 +11,7 @@ export default function QuizGrid (props) {
   const location = useLocation()
   const quizCategory = location.pathname.split('/')[1]
   const { index, choosenAnswer, selectAnswer, setCorrectAnswer, correctAnswer, setIndex, setScore, score } = useQuiz()
+  const [percentage, setPercentage] = useState(0)
   const navigate = useNavigate()
 
   const [userAnswer, setUserAnswer] = useState('')
@@ -26,6 +27,7 @@ export default function QuizGrid (props) {
     questionsArray = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions
     questionTitle = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].question
     questionAnswers = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].option
+    setPercentage((index + 1) * 100 / questionsArray.length)
   }, [index])
 
   const submitAnswer = () => {
@@ -52,9 +54,9 @@ export default function QuizGrid (props) {
   return (
     <div className='grid grid-cols-2 gap-24 mt-10'>
       <div className='flex flex-col gap-11 desktop:pb-12 mobile:gap-5 mobile:pb-4'>
-        <p className='text-lg italic transition-all duration-300'>Question {index + 1} of {questionsArray.length}</p>
+        <p className='text-2xl italic transition-all duration-300'>Question {index + 1} of {questionsArray.length}</p>
         <h2 className='text-3xl font-medium transition-all duration-300'>{questionTitle}</h2>
-        <CircularProgress percent={5.5}/>
+        <CircularProgress percentage={percentage}/>
       </div>
       <div className='flex flex-col space-y-8'>
         {
