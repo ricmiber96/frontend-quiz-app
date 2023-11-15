@@ -18,7 +18,7 @@ export default function QuizItem ({ optionIndex, option, userAnswer, theme }) {
   return (
     <button
       onClick={() => handleSelected(option)}
-      className={`w-full bg-white flex flex-row items-center  gap-12 rounded-3xl font-medium shadow-sm cursor-pointer transition-all duration-300 p-4 border-4 
+      className={`${theme ? 'bg-gray-600' : 'bg-white'} w-full flex flex-row items-center  gap-12 rounded-3xl font-medium shadow-sm cursor-pointer transition-all duration-300 p-4 border-4 
       ${isAnswerCorrect
       ? 'border-green-400'
       : isAnswerWrong
@@ -32,7 +32,7 @@ export default function QuizItem ({ optionIndex, option, userAnswer, theme }) {
       `}>
         {optionLetter}
       </span>
-      <span className='text-3xl font-medium'>
+      <span className={`${theme ? 'text-white' : 'text-gray-600'} text-3xl font-medium`}>
         {option}
       </span>
       {

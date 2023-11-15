@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export default function CircularProgress ({ percentage }) {
+export default function CircularProgress ({ theme, percentage }) {
   const [circumference, setCircumference] = useState(2 * (22 / 7) * 120)
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function CircularProgress ({ percentage }) {
           stroke='currentColor'
           strokeWidth='30'
           fill='transparent'
-          className='text-gray-700'
+          className={`${theme ? 'text-gray-600' : 'text-white'}`}
         />
 
         <circle
@@ -32,7 +32,7 @@ export default function CircularProgress ({ percentage }) {
           className='text-purple-600'
         />
       </svg>
-      <span className='absolute text-5xl'>{`${percentage}%`}</span>
+      <span className={`${theme ? 'text-white' : 'text-gray-600'} absolute text-5xl`}>{`${percentage}%`}</span>
     </div>
   )
 }
