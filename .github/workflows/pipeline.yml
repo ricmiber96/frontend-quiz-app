@@ -14,6 +14,7 @@ jobs:
         uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
+          node-version: 16
 
   lint:
     runs-on: ubuntu-latest
@@ -35,7 +36,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: pnpm/action-setup@v2
@@ -56,7 +57,7 @@ jobs:
     needs: [ lint, build ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: pnpm/action-setup@v2
