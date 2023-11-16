@@ -19,5 +19,4 @@ describe('HomeItem', () => {
     expect(screen.getByRole('link').getAttribute('href')).toBe('/html')
     expect(screen.getByText('HTML'))
   })
-
 })

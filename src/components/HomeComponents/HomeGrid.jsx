@@ -11,7 +11,7 @@ export default function HomeGrid (props) {
   }, [])
 
   return (
-    <section className='grid grid-cols-2 gap-24 mt-10'>
+    <section className='grid desktop:grid-cols-1 grid-cols-2 gap-24 mt-10'>
       <div className={` ${theme ? 'text-white' : 'text-black'} flex flex-col space-y-6`}>
         <h1 className='text-8xl text-light'>Welcome to <br/>
           <span className='font-bold'>Frontend Quiz!</span>

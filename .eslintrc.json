@@ -15,7 +15,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "jest"
     ],
     "rules": {
           // suppress errors for missing 'import React' in files

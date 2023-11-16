@@ -7,15 +7,15 @@ import { QUIZZES } from '../src/utils/quizzes'
 
 const option = QUIZZES[0].questions[0].options[0]
 describe('QuizItem', () => {
-    test('should render the component', () => {
-        render(
-        <BrowserRouter>
+  test('should render the component', () => {
+    render(
+      <BrowserRouter>
         <QuizContextProvider>
-            <QuizItem optionIndex={0} option={option} userAnswer='' theme={false}/>
-            </QuizContextProvider>
-        </BrowserRouter>
-        )
-        expect(screen.getByText('A'))
-        expect(screen.getByText('Hyperlinks and Text Markup Language'))
-    })
+          <QuizItem optionIndex={0} option={option} userAnswer='' theme={false}/>
+        </QuizContextProvider>
+      </BrowserRouter>
+    )
+    expect(screen.getByText('A'))
+    expect(screen.getByText('Hyperlinks and Text Markup Language'))
+  })
 })
