@@ -10,7 +10,7 @@ export default function QuizGrid (props) {
   // Get quiz category from url
   const location = useLocation()
   const quizCategory = location.pathname.split('/')[1]
-  const { theme, index, choosenAnswer, selectAnswer, setCorrectAnswer, setQuizCategory, correctAnswer, setIndex, setScore, score } = useQuiz()
+  const { theme, index, choosenAnswer, selectAnswer, setCorrectAnswer, setQuizCategory, correctAnswer, setIndex, setScore } = useQuiz()
   const [percentage, setPercentage] = useState(0)
   const navigate = useNavigate()
 
@@ -28,19 +28,18 @@ export default function QuizGrid (props) {
     questionsArray = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions
     questionTitle = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].question
     questionAnswers = QUIZZES.filter((quiz) => quiz.title.toLowerCase() === quizCategory)[0].questions[index].option
-    setPercentage((index + 1) * 100 / questionsArray.length)
   }, [index])
 
   const submitAnswer = () => {
     choosenAnswer === '' ? setIsAnswered(true) : setIsAnswered(false)
     setUserAnswer(choosenAnswer)
+    setPercentage((index + 1) * 100 / questionsArray.length)
   }
 
   const nextQuestion = () => {
     if (choosenAnswer === correctAnswer) {
       setScore()
     }
-    console.log(score)
     setUserAnswer('')
     selectAnswer('')
     setIsAnswered(false)
@@ -54,9 +53,9 @@ export default function QuizGrid (props) {
 
   return (
     <div className='grid grid-cols-2 gap-24 mt-10'>
-      <div className='flex flex-col gap-11 desktop:pb-12 mobile:gap-5 mobile:pb-4'>
+      <div className='flex flex-col gap-12 desktop:pb-12 mobile:gap-5 mobile:pb-4'>
         <p className={`${theme ? 'text-white' : 'text-gray-600'} text-2xl italic transition-all duration-300`}>Question {index + 1} of {questionsArray.length}</p>
-        <h2 className={`${theme ? 'text-white' : 'text-gray-600'} text-3xl font-bold transition-all duration-300`}>{questionTitle}</h2>
+        <h2 className={`${theme ? 'text-white' : 'text-gray-600'} text-3xl font-bold transition-all duration-300 mb-10`}>{questionTitle}</h2>
         <CircularProgress theme={theme} percentage={percentage}/>
       </div>
       <div className='flex flex-col space-y-8'>

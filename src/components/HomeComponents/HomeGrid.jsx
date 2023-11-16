@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { QUIZZES } from '../../utils/quizzes'
 import HomeItem from './HomeItem'
 import useQuiz from '../../hooks/useQuiz'
 
 export default function HomeGrid (props) {
-  const { theme } = useQuiz()
+  const { theme, resetQuiz } = useQuiz()
+
+  useEffect(() => {
+    resetQuiz()
+  }, [])
 
   return (
     <section className='grid grid-cols-2 gap-24 mt-10'>
